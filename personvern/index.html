@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="no-NO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personvernerklæring | Cipher</title>
+    <link rel="icon" type="image/png" href="../bilder/logoside192.png">
+    <script src="../consent.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #F5A28C; /* Oransj */
+            --primary-dark: #E07E68; /* Mørkere oransj */
+            --primary-light: #FFCEBF; /* Lysere oransj */
+            --secondary: #212338; /* Mørkeblå - primærfarge */
+            --secondary-dark: #171828; /* Mørkere blå */
+            --secondary-light: #353756; /* Lysere blå */
+            --secondary-lighter: #404466; /* Enda lysere blå */
+            --dark: #171721;
+            --light: #F8F9FA;
+            --gray: #6c757d;
+            --light-gray: #F2F2F2;
+            --white: #FFFFFF;
+            --gradient-blue: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            --gradient-orange: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --background: #2A2C44; /* Lysere bakgrunn enn original */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Digital particles animation */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+    
+        .particle {
+            position: absolute;
+            display: block;
+            background-color: var(--primary);
+            border-radius: 50%;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: float-particle 20s ease-in-out infinite;
+        }
+        
+        @keyframes float-particle {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(50px, -30px);
+            }
+            50% {
+                transform: translate(20px, 50px);
+            }
+            75% {
+                transform: translate(-30px, 20px);
+            }
+        }
+
+        html, body {
+            height: 100%;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        main {
+            flex: 1 0 auto;
+        }
+        
+        footer {
+            flex-shrink: 0;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .big-paragraph {
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: var(--secondary);
+            box-shadow: 0 4px 14px rgba(245, 162, 140, 0.4);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 162, 140, 0.6);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary-light);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(21, 23, 38, 0.4);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(21, 23, 38, 0.6);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+        
+        .btn-outline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        
+        .btn-outline:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(245, 162, 140, 0.3);
+        }
+        
+        .btn-outline:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .text-primary {
+            color: var(--primary);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .rounded-corners {
+            border-radius: 20px;
+        }
+        
+        .overflow-hidden {
+            overflow: hidden;
+        }
+        
+        .relative {
+            position: relative;
+        }
+        
+        .z-index-10 {
+            z-index: 10;
+        }
+        
+        /* Animated decoration */
+        .animated-shape {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(245, 162, 140, 0.2), transparent 70%);
+            z-index: 0;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape1 {
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            bottom: -150px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            animation-delay: -2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) scale(1.05);
+            }
+        }
+        
+        /* Header & Navigation */
+        .header {
+            background-color: rgba(42, 44, 68, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(42, 44, 68, 0.98);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 35px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 30px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--white);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .header-cta {
+            margin-left: 30px;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--white);
+            font-size: 1.5rem;
+            position: relative;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            z-index: 101;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hamburger icon with animated transition */
+        .hamburger-icon {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hamburger-icon .line {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            margin: 3px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .mobile-toggle.active .hamburger-icon .line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        
+        .mobile-toggle.active .hamburger-icon .line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-toggle.active .hamburger-icon .line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Menu Footer (Mobile-only) */
+        .menu-footer {
+            display: none; /* Hide by default on desktop */
+        }
+        
+
+        /* Page Hero */
+        .page-hero {
+            padding: 150px 0 70px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--background), var(--secondary-dark));
+            color: var(--white);
+        }
+
+        .page-hero-container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .page-hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--white);
+            overflow-wrap: anywhere;
+        }
+
+        .page-hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* Privacy Policy */
+        .policy-section {
+            padding: 80px 0 100px;
+            background-color: var(--white);
+            color: var(--secondary);
+        }
+
+        .policy-container {
+            max-width: 800px;
+        }
+
+        .policy-section h2 {
+            font-size: 1.8rem;
+            margin: 50px 0 16px;
+            scroll-margin-top: 100px;
+        }
+
+        .policy-section p,
+        .policy-section li {
+            color: rgba(33, 35, 56, 0.85);
+            font-size: 1.05rem;
+        }
+
+        .policy-section ul {
+            padding-left: 22px;
+            margin-bottom: 1rem;
+        }
+
+        .policy-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .policy-section a,
+        .policy-consent-button {
+            color: var(--secondary);
+            text-decoration: underline;
+            text-decoration-color: var(--primary);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+        }
+
+        .policy-section a:hover,
+        .policy-consent-button:hover {
+            color: var(--primary-dark);
+        }
+
+        .policy-consent-button {
+            padding: 0;
+            background: none;
+            border: 0;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .policy-section .policy-updated {
+            color: rgba(33, 35, 56, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .policy-toc {
+            margin: 30px 0 10px;
+            padding: 24px 28px;
+            background-color: var(--light-gray);
+            border-radius: 20px;
+        }
+
+        .policy-section .policy-toc h2 {
+            font-size: 1.2rem;
+            margin: 0 0 12px;
+        }
+
+        .policy-toc ol {
+            padding-left: 20px;
+            columns: 2;
+            column-gap: 40px;
+        }
+
+        .policy-toc li {
+            margin-bottom: 6px;
+        }
+
+        .policy-address {
+            font-style: normal;
+            margin-bottom: 1rem;
+            padding-left: 16px;
+            border-left: 4px solid var(--primary);
+            line-height: 1.8;
+            color: rgba(33, 35, 56, 0.85);
+        }
+
+        .policy-table-wrapper {
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .policy-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .policy-table caption {
+            text-align: left;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .policy-table th,
+        .policy-table td {
+            text-align: left;
+            vertical-align: top;
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(33, 35, 56, 0.12);
+        }
+
+        .policy-table th {
+            background-color: var(--light-gray);
+            font-weight: 600;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        .policy-section a:focus-visible,
+        .policy-section button:focus-visible {
+            outline-color: var(--secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animation-fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        /* This enables animation only when element enters viewport with IntersectionObserver */
+        .animation-fade-in:not(.animate) {
+            animation: none;
+            opacity: 0;
+        }
+        
+        .animation-fade-in.animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .animation-slide-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .animation-slide-up:not(.animate) {
+            animation: none;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .animation-slide-up.animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.3s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.6s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.9s;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--secondary-dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-about p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 35px;
+        }
+        
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--white);
+            position: relative;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .footer-social a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-bottom p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .dropdown-icon {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+            margin-left: 3px;
+        }
+        
+        .dropdown.active .dropdown-icon {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--secondary);
+            min-width: 220px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 12px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 5;
+            margin-top: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+            max-height: 0; /* Start with zero height for better animation */
+        }
+        
+        /* Desktop dropdown behavior */
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-content,
+            .dropdown.hovered .dropdown-content {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+                max-height: 500px;
+                padding: 12px 0;
+            }
+        }
+        
+        /* Mobile dropdown behavior - controlled by JS */
+        .dropdown.active .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--white);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            transition: width 0.3s ease;
+            opacity: 0.8;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--secondary-light);
+            color: var(--white);
+            padding-left: 25px;
+        }
+        
+        .dropdown-item:hover::before {
+            width: 3px;
+        }
+
+        .dropdown-item.active {
+            color: var(--primary);
+            background-color: rgba(245, 162, 140, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1, .page-hero-title {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+            
+            .footer-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 0;
+            }
+            
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.6);
+                backdrop-filter: blur(6px);
+                -webkit-backdrop-filter: blur(6px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 98;
+            }
+            
+            .menu-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 85%;
+                height: 100vh;
+                background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+                flex-direction: column;
+                transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+                padding: 80px 30px 40px;
+                z-index: 100;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+                overflow-y: auto;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            
+            .nav-item {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .nav-link {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 0;
+                font-size: 1.2rem;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+            
+            .nav-link:hover {
+                padding-left: 10px;
+                color: var(--primary);
+            }
+            
+            .nav-link::after {
+                display: none;
+            }
+            
+            .dropdown-toggle {
+                justify-content: space-between;
+                width: 100%;
+                display: flex;
+            }
+            
+            .dropdown-icon {
+                font-size: 1rem;
+            }
+            
+            .header-cta {
+                margin: 20px 0 0;
+                width: 100%;
+            }
+            
+            .header-cta .btn {
+                width: 100%;
+                padding: 15px;
+                font-size: 1.1rem;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            }
+            
+            .header-cta .btn i {
+                margin-left: 10px;
+            }
+            
+            /* Menu Footer (Mobile only) */
+            .menu-footer {
+                display: block;
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                text-align: center;
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.9rem;
+            }
+            
+            .menu-contact-info {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+            
+            .menu-contact-info a {
+                color: rgba(255, 255, 255, 0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
+            
+            .menu-contact-info a i {
+                margin-right: 8px;
+                color: var(--primary);
+            }
+            
+            .menu-contact-info a:hover {
+                color: var(--primary);
+                transform: translateY(-2px);
+            }
+            
+            .section-heading {
+                margin-bottom: 40px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .animated-shape {
+                display: none;
+            }
+            
+            /* Mobile-Specific Dropdown Styles */
+            .dropdown-content {
+                position: static;
+                background-color: rgba(255, 255, 255, 0.05);
+                box-shadow: none;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0;
+                margin-top: 0;
+                border-radius: 8px;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                transition: max-height 0.4s ease, padding 0.4s ease, margin 0.4s ease;
+                border: none;
+                pointer-events: auto; /* Ensure clicks work on mobile */
+                width: 100%;
+                left: 0;
+                transform: translateX(0);
+            }
+            
+            .dropdown.active .dropdown-content {
+                max-height: 400px;
+                padding: 10px 0;
+                margin-top: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .dropdown-item {
+                padding: 12px 20px;
+                margin-left: 0;
+                font-size: 1rem;
+                border-left: 3px solid transparent;
+            }
+            
+            .dropdown-item:hover {
+                border-left: 3px solid var(--primary);
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            .dropdown-content::before {
+                display: none; /* Remove the dropdown arrow on mobile */
+            }
+
+            .page-hero {
+                padding: 120px 0 50px;
+            }
+
+            .page-hero-title {
+                font-size: 2rem;
+            }
+
+            .policy-section {
+                padding: 50px 0 70px;
+            }
+
+            .policy-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .policy-toc {
+                padding: 20px;
+            }
+
+            .policy-toc ol {
+                columns: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animated-shape,
+            .particle {
+                animation: none;
+            }
+
+            .animation-fade-in,
+            .animation-fade-in.animate,
+            .animation-fade-in:not(.animate) {
+                animation: none;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../">
+                    <img src="../bilder/Cipher-logo-negativ+(3).png" alt="Cipher Logo">
+                </a>
+            </div>
+            
+            <button class="mobile-toggle" id="menuToggle" aria-label="Menyknapp" aria-expanded="false">
+                <span class="hamburger-icon">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </span>
+            </button>
+            
+            <!-- Dark overlay when menu is open -->
+            <div class="menu-overlay" id="menuOverlay"></div>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="../" class="nav-link">Hjem</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            Våre tjenester
+                            <i class="dropdown-icon fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="../it-drift" class="dropdown-item">IT-drift</a>
+                            <a href="../sikkerhetstjenester" class="dropdown-item">Sikkerhetstjenester</a>
+                            <a href="../skytjenester" class="dropdown-item">Skytjenester</a>
+                            <a href="../innsiktoganalyse" class="dropdown-item">Innsikt og analyse</a>
+                            <a href="../strategisk-it-radgivning" class="dropdown-item">Strategisk IT-rådgivning</a>
+                            <a href="../devops-monitorering" class="dropdown-item">DevOps-monitorering</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="../om" class="nav-link">Om oss</a></li>
+                    <li class="nav-item"><a href="../karriere" class="nav-link">Karriere</a></li>
+                    <li class="nav-item"><a href="../anydesk" class="nav-link">Cipher Anydesk</a></li>
+                </ul>
+
+                <a href="../#kontakt" class="btn btn-primary header-cta">Kontakt oss</a>
+                
+                <!-- Mobile-only footer with contact info -->
+                <div class="menu-footer">
+                    <div class="menu-contact-info">
+                        <a href="tel:+4756123465"><i class="fas fa-phone"></i> +47 56 12 34 65</a>
+                        <a href="mailto:hi@cipher.no"><i class="fas fa-envelope"></i> hi@cipher.no</a>
+                    </div>
+                    <p>&copy; 2026 Cipher Norge AS</p>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="animated-shape shape1"></div>
+            <div class="animated-shape shape2"></div>
+            <div class="particles-container" id="heroParticles"></div>
+            <div class="container page-hero-container">
+                <h1 class="page-hero-title animation-fade-in">Personvernerklæring</h1>
+                <p class="page-hero-subtitle animation-fade-in delay-1">Her forklarer vi hvilke personopplysninger vi samler inn når du besøker nettsiden, tar kontakt eller søker jobb hos oss, og hva vi bruker dem til.</p>
+            </div>
+        </section>
+
+        <section class="policy-section">
+            <div class="container policy-container">
+                <p class="policy-updated">Sist oppdatert: <time id="policyUpdated" datetime="2026-10-05">5. oktober 2026</time></p>
+
+                <nav class="policy-toc" aria-labelledby="tocTitle">
+                    <h2 id="tocTitle">Innhold</h2>
+                    <ol>
+                        <li><a href="#ansvarlig">Hvem er ansvarlig</a></li>
+                        <li><a href="#nettsiden">Når du besøker nettsiden</a></li>
+                        <li><a href="#statistikk">Statistikk og informasjonskapsler</a></li>
+                        <li><a href="#henvendelser">Når du kontakter oss</a></li>
+                        <li><a href="#jobbsoknader">Når du søker jobb hos oss</a></li>
+                        <li><a href="#leverandorer">Hvem vi deler opplysninger med</a></li>
+                        <li><a href="#utenfor-eos">Overføring ut av EØS</a></li>
+                        <li><a href="#rettigheter">Rettighetene dine</a></li>
+                        <li><a href="#endringer">Endringer</a></li>
+                    </ol>
+                </nav>
+
+                <h2 id="ansvarlig">1. Hvem er ansvarlig</h2>
+                <p>Cipher Bergen AS er behandlingsansvarlig for personopplysningene som beskrives her. Det betyr at vi bestemmer hvorfor og hvordan opplysningene brukes.</p>
+                <address class="policy-address">
+                    <strong>Cipher Bergen AS</strong><br>
+                    Org.nr. 924 690 240<br>
+                    Nøstegaten 58, 5011 Bergen<br>
+                    <a href="mailto:hi@cipher.no">hi@cipher.no</a> · <a href="tel:+4756123465">+47 56 12 34 65</a>
+                </address>
+                <p>Når vi leverer IT-tjenester til kunder, behandler vi personopplysninger på vegne av kunden. Da er kunden behandlingsansvarlig, og behandlingen reguleres av <a href="../Databehandleravtale%20Cipher%20Bergen.pdf" target="_blank" rel="noopener noreferrer">databehandleravtalen vår</a>.</p>
+
+                <h2 id="nettsiden">2. Når du besøker nettsiden</h2>
+                <p>Nettsiden hostes på GitHub Pages. Når du åpner en side, registrerer GitHub IP-adressen din for å holde tjenesten sikker og stabil. Vi har ikke tilgang til disse loggene.</p>
+                <p>Nettsiden henter også skrifttyper fra Google Fonts, ikoner fra Cloudflare og enkelte bilder fra Unsplash. For å vise dem sender nettleseren din IP-adressen til disse tjenestene.</p>
+                <p>Grunnlaget er vår berettigede interesse i å drifte en sikker og fungerende nettside (personvernforordningen artikkel 6 nr. 1 bokstav f).</p>
+                <p>Nettsiden lenker til LinkedIn, Instagram, Google Maps og AnyDesk. Følger du en slik lenke, gjelder personvernerklæringen til den tjenesten.</p>
+
+                <h2 id="statistikk">3. Statistikk og informasjonskapsler</h2>
+                <p>Hvis du sier ja, bruker vi Google Analytics til å se hvordan nettsiden brukes, for eksempel hvilke sider som besøkes og hvor lenge. Tallene bruker vi til å gjøre nettsiden bedre.</p>
+                <p>Google Analytics lagrer informasjonskapsler i nettleseren din og sender opplysninger om enheten, nettleseren og besøket ditt til Google. Google oppgir at IP-adresser ikke lagres i Google Analytics. Opplysningene slettes fra Google Analytics etter 14 måneder.</p>
+                <p>Grunnlaget er samtykket ditt (artikkel 6 nr. 1 bokstav a og ekomloven § 3-15). Sier du nei takk, lastes ikke Google Analytics i det hele tatt. Du kan når som helst <button type="button" class="policy-consent-button" data-consent-settings>endre valget ditt</button>.</p>
+                <div class="policy-table-wrapper">
+                    <table class="policy-table">
+                        <caption>Informasjonskapsler og lagring i nettleseren</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Navn</th>
+                                <th scope="col">Fra</th>
+                                <th scope="col">Formål</th>
+                                <th scope="col">Varighet</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>_ga</code></td>
+                                <td>Google Analytics</td>
+                                <td>Skiller besøkende fra hverandre. Settes bare hvis du sier ja.</td>
+                                <td>2 år</td>
+                            </tr>
+                            <tr>
+                                <td><code>_ga_TX4GRPD3L6</code></td>
+                                <td>Google Analytics</td>
+                                <td>Holder styr på besøket ditt. Settes bare hvis du sier ja.</td>
+                                <td>2 år</td>
+                            </tr>
+                            <tr>
+                                <td><code>cipher-cookie-consent</code></td>
+                                <td>Cipher</td>
+                                <td>Husker om du har sagt ja eller nei til statistikk. Lagres bare i nettleseren din.</td>
+                                <td>Til du sletter det</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 id="henvendelser">4. Når du kontakter oss</h2>
+                <p>Sender du oss en melding via kontaktskjemaet, får vi navnet ditt, e-postadressen din, emnet og meldingen. Skjemaet sendes via tjenesten Formspree, som videresender meldingen til e-posten vår. Skriver du til oss på e-post eller ringer, får vi opplysningene du selv gir oss.</p>
+                <p>Vi bruker opplysningene til å svare deg og følge opp henvendelsen. Grunnlaget er vår berettigede interesse i å svare på henvendelser (artikkel 6 nr. 1 bokstav f), eller at du vil inngå en avtale med oss (bokstav b).</p>
+                <p>Vi sletter i utgangspunktet ingen henvendelser, med mindre dette spesifikt etterspørres.</p>
+
+                <h2 id="jobbsoknader">5. Når du søker jobb hos oss</h2>
+                <p>Søker du på en stilling eller sender en åpen søknad, får vi opplysningene du sender med, som regel CV, søknadsbrev, kontaktinformasjon og attester. Vi bruker dem bare til å vurdere søknaden din.</p>
+                <p>Grunnlaget er at du ønsker å inngå en arbeidsavtale med oss (artikkel 6 nr. 1 bokstav b).</p>
+                <p>Søknaden din blir lest av relevant personell hos Cipher Bergen AS.</p>
+                <p>Vi sletter i utgangspunktet ikke innsendte opplysninger, med mindre dette spesifikt etterspørres.</p>
+
+                <h2 id="leverandorer">6. Hvem vi deler opplysninger med</h2>
+                <p>Vi bruker disse leverandørene for å drive nettsiden og svare deg:</p>
+                <ul>
+                    <li><strong>GitHub, Inc.</strong> (USA): hosting av nettsiden</li>
+                    <li><strong>Google</strong> (Irland og USA): statistikk, bare hvis du sier ja, og skrifttyper</li>
+                    <li><strong>Formspree, Inc.</strong> (USA): kontaktskjemaet</li>
+                    <li><strong>Cloudflare, Inc.</strong> (USA): ikoner</li>
+                    <li><strong>Unsplash</strong> (Canada): bilder</li>
+                    <li><strong>Microsoft</strong>: e-post</li>
+                </ul>
+                <p>Med leverandører som behandler opplysninger på våre vegne, har vi databehandleravtale.</p>
+
+                <h2 id="utenfor-eos">7. Overføring ut av EØS</h2>
+                <p>Flere av leverandørene våre holder til i USA. Overføring dit skjer på grunnlag av rammeverket for personvern mellom EU og USA (EU-U.S. Data Privacy Framework) for leverandører som er sertifisert under det, og ellers på grunnlag av EU-kommisjonens standard personvernbestemmelser. EU har godkjent Canada som et land med tilstrekkelig beskyttelse.</p>
+
+                <h2 id="rettigheter">8. Rettighetene dine</h2>
+                <p>Du har rett til å:</p>
+                <ul>
+                    <li><strong>få innsyn</strong> i hvilke opplysninger vi har om deg, og få en kopi</li>
+                    <li><strong>få rettet</strong> opplysninger som er feil</li>
+                    <li><strong>få slettet</strong> opplysninger vi ikke lenger trenger</li>
+                    <li><strong>begrense</strong> behandlingen, for eksempel mens vi vurderer et krav om retting</li>
+                    <li><strong>protestere</strong> mot behandling som bygger på vår berettigede interesse</li>
+                    <li><strong>få utlevert</strong> opplysninger du har gitt oss, i et maskinlesbart format</li>
+                    <li><strong>trekke tilbake samtykket</strong> til statistikk når som helst</li>
+                </ul>
+                <p>Send en e-post til <a href="mailto:hi@cipher.no">hi@cipher.no</a>, så svarer vi innen en måned.</p>
+                <p>Mener du at vi behandler personopplysninger i strid med regelverket, kan du klage til <a href="https://www.datatilsynet.no/" target="_blank" rel="noopener">Datatilsynet</a>. Vi setter pris på om du tar kontakt med oss først, så vi kan prøve å løse det.</p>
+
+                <h2 id="endringer">9. Endringer</h2>
+                <p>Vi oppdaterer erklæringen når vi endrer hvordan vi behandler personopplysninger. Datoen øverst viser når den sist ble endret.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="../bilder/Cipher-logo-negativ+(3).png" alt="Cipher Logo">
+                    </div>
+                    <p>Vi hjelper virksomheter med å sikre digital infrastruktur, implementere skyløsninger og optimalisere IT-drift på en måte som skaper varig verdi.</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/cipher-norge-as/" target="_blank" rel="noopener" aria-label="Cipher på LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/ciphernorge/" target="_blank" rel="noopener" aria-label="Cipher på Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-column">
+                    <h5 class="footer-title">Tjenester</h5>
+                    <ul class="footer-links">
+                        <li><a href="../it-drift">IT-drift</a></li>
+                        <li><a href="../sikkerhetstjenester">Sikkerhetstjenester</a></li>
+                        <li><a href="../skytjenester">Skytjenester</a></li>
+                        <li><a href="../strategisk-it-radgivning">Strategisk IT-rådgivning</a></li>
+                        <li><a href="../innsiktoganalyse">Datainnsikt og analyse</a></li>
+                        <li><a href="../devops-monitorering">DevOps-monitorering</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-column">
+                    <h5 class="footer-title">Snarveier</h5>
+                    <ul class="footer-links">
+                        <li><a href="../">Hjem</a></li>
+                        <li><a href="../om">Om oss</a></li>
+                        <li><a href="../karriere">Karriere</a></li>
+                        <li><a href="../#kontakt">Kontakt</a></li>
+                        <li><a href="../anydesk">Cipher Anydesk</a></li>
+                        <li><a href="../Databehandleravtale%20Cipher%20Bergen.pdf" target="_blank" rel="noopener noreferrer">Databehandleravtale</a></li>
+                        <li><a href="../personvern">Personvern</a></li>
+                        <li><button type="button" class="footer-consent" data-consent-settings>Informasjonskapsler</button></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-column">
+                    <h5 class="footer-title">Kontakt</h5>
+                    <ul class="footer-links">
+                        <li><a href="https://goo.gl/maps/bZVMgfbGGvZKUNc47" target="_blank" rel="noopener">Nøstegaten 58, 5011 Bergen</a></li>
+                        <li><a href="tel:+4756123465">+47 56 12 34 65</a></li>
+                        <li><a href="mailto:hi@cipher.no">hi@cipher.no</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 Cipher Norge AS. Alle rettigheter reservert.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize animations with IntersectionObserver for better performance
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // When element becomes visible, add a class to trigger animation
+                            entry.target.classList.add('animate');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                // Observe all animated elements
+                document.querySelectorAll('.animation-fade-in, .animation-slide-up').forEach(el => {
+                    observer.observe(el);
+                });
+            } else {
+                // Fallback for browsers that don't support IntersectionObserver
+                document.querySelectorAll('.animation-fade-in, .animation-slide-up').forEach(el => {
+                    el.classList.add('animate');
+                });
+            }
+            
+            // Check device size
+            const isMobile = () => window.innerWidth <= 768;
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            // Toggle menu function
+            const toggleMenu = () => {
+                navMenu.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+                
+                const isExpanded = navMenu.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isExpanded);
+                
+                // Prevent body scrolling when menu is open
+                document.body.style.overflow = isExpanded ? 'hidden' : '';
+            };
+            
+            // Open/close menu when clicking hamburger icon
+            menuToggle.addEventListener('click', toggleMenu);
+            
+            // Close menu when clicking on overlay
+            menuOverlay.addEventListener('click', toggleMenu);
+            
+            // Sticky Header
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Dropdown Functionality
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            // Function to handle clicks on dropdown toggles
+            const handleDropdownToggle = (dropdown, link, e) => {
+                e.preventDefault();
+                e.stopPropagation(); // Prevent event from bubbling up
+                dropdown.classList.toggle('active');
+                
+                // Toggle aria-expanded for accessibility
+                const isExpanded = dropdown.classList.contains('active');
+                link.setAttribute('aria-expanded', isExpanded);
+                
+                // Close other dropdowns
+                dropdowns.forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        otherDropdown.classList.remove('active');
+                        const otherToggle = otherDropdown.querySelector('.dropdown-toggle');
+                        if (otherToggle) {
+                            otherToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+            };
+            
+            // Handle click and hover events for dropdowns
+            dropdowns.forEach(dropdown => {
+                const link = dropdown.querySelector('.dropdown-toggle');
+                
+                if (!link) return;
+                
+                // On mobile: handle click events
+                link.addEventListener('click', (e) => {
+                    if (isMobile()) {
+                        handleDropdownToggle(dropdown, link, e);
+                        // Ensure dropdown is within the mobile menu bounds
+                        const dropdownContent = dropdown.querySelector('.dropdown-content');
+                        if (dropdownContent) {
+                            dropdownContent.style.width = '100%';
+                            dropdownContent.style.left = '0';
+                        }
+                    } else {
+                        // On desktop: prevent default action if clicking main navigation items with dropdowns
+                        e.preventDefault();
+                    }
+                });
+                
+                // Mouse enter/leave events for desktop
+                const setupHoverEvents = () => {
+                    if (!isMobile()) {
+                        dropdown.addEventListener('mouseenter', () => {
+                            dropdown.classList.add('hovered');
+                            link.setAttribute('aria-expanded', 'true');
+                        });
+                        
+                        dropdown.addEventListener('mouseleave', () => {
+                            dropdown.classList.remove('hovered');
+                            link.setAttribute('aria-expanded', 'false');
+                        });
+                    }
+                };
+                
+                // Initialize hover events
+                setupHoverEvents();
+                
+                // Handle window resize
+                window.addEventListener('resize', () => {
+                    if (isMobile()) {
+                        // Reset any desktop-specific states when switching to mobile
+                        dropdown.classList.remove('hovered');
+                    }
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                        const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+                        if (dropdownToggle) {
+                            dropdownToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                    document.body.style.overflow = '';
+                    menuOverlay.classList.remove('active');
+                }
+            });
+            
+            // Prevent dropdown menu clicks from closing the mobile menu
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            });
+            
+            // Create particles animation
+            const createParticles = (containerId, count = 30) => {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    
+                    // Random size
+                    const size = Math.random() * 4 + 1;
+                    
+                    // Random opacity
+                    const opacity = Math.random() * 0.5 + 0.2;
+                    
+                    // Set styles
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.opacity = opacity;
+                    
+                    // Random animation delay
+                    const delay = Math.random() * 10;
+                    particle.style.animationDelay = `${delay}s`;
+                    
+                    container.appendChild(particle);
+                }
+            };
+            
+            // Initialize particles
+            createParticles('heroParticles', 40);
+
+            // GitHub Pages sends the latest deploy time as Last-Modified for every file, so ask for this file's last commit instead.
+            const policyUpdated = document.getElementById('policyUpdated');
+            fetch('https://api.github.com/repos/CipherBergen/int-Ciphernettside/commits?path=personvern/index.html&per_page=1')
+                .then(response => response.ok ? response.json() : [])
+                .then(commits => {
+                    if (!commits.length) return;
+                    const date = new Date(commits[0].commit.committer.date);
+                    policyUpdated.dateTime = date.toISOString().slice(0, 10);
+                    policyUpdated.textContent = date.toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' });
+                })
+                .catch(() => {});
+        });
+    </script>
+</body>
+</html>
